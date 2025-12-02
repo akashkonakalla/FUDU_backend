@@ -28,6 +28,8 @@ app.use('/uploads', express.static('uploads'));
 app.listen(PORT, () => {
     console.log(`server started and running at http://localhost:${PORT}`);
 });
+console.log("JWT SECRET:", process.env.WhatIsYourName);
+
 
 app.use('/', (req, res) => {
     res.send("Welcome to FUDU");
