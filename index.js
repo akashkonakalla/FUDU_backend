@@ -8,11 +8,14 @@ const productRoutes = require('./routes/productRoutes');
 const cors = require('cors');
 const path = require('path')
 
+
 const app = express()
 
 const PORT = process.env.PORT || 4000;
 
 dotEnv.config();
+
+console.log("JWT SECRET FROM ENV:", process.env.WhatIsYourName);
 app.use(cors())
 
 mongoose.connect(process.env.MONGO_URI)
@@ -29,7 +32,6 @@ app.listen(PORT, () => {
     console.log(`server started and running at http://localhost:${PORT}`);
 });
 console.log("JWT SECRET:", process.env.WhatIsYourName);
-
 
 app.use('/', (req, res) => {
     res.send("Welcome to FUDU");
