@@ -5,7 +5,7 @@ const dotEnv = require('dotenv');
 
 dotEnv.config();
 
-const secretKey = process.env.WhatISYourName
+const secretKey = process.env.WhatIsYourName
 
 
 
