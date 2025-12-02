@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 4000;
 
 dotEnv.config();
 
-console.log("JWT SECRET FROM ENV:", process.env.WhatIsYourName);
+console.log("JWT SECRET FROM ENV:", process.env.WhatISYourName);
 app.use(cors())
 
 mongoose.connect(process.env.MONGO_URI)
@@ -31,7 +31,7 @@ app.use('/uploads', express.static('uploads'));
 app.listen(PORT, () => {
     console.log(`server started and running at http://localhost:${PORT}`);
 });
-console.log("JWT SECRET:", process.env.WhatIsYourName);
+console.log("JWT SECRET:", process.env.WhatISYourName);
 
 app.use('/', (req, res) => {
     res.send("Welcome to FUDU");
