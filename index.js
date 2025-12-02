@@ -26,9 +26,9 @@ app.use('/product', productRoutes);
 app.use('/uploads', express.static('uploads'));
 
 app.listen(PORT, () => {
-    console.log(`server started and running at ${PORT}`);
+    console.log(`server started and running at http://localhost:${PORT}`);
 });
 
 app.use('/', (req, res) => {
-    res.send("<h1> Welcome to SUBY");
+    res.send("Welcome to FUDU");
 })
