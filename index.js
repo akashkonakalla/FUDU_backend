@@ -15,7 +15,6 @@ const PORT = process.env.PORT || 4000;
 
 dotEnv.config();
 
-console.log("JWT SECRET FROM ENV:", process.env.WhatIsYourName);
 app.use(cors())
 
 mongoose.connect(process.env.MONGO_URI)
