@@ -5,7 +5,15 @@ const verifyToken = require('../middlewares/verifyToken');
 
 const router = express.Router()
 
-router.post('/add-firm', verifyToken, firmController.addFirm);
+const { upload } = require("../config/cloudinary");
+
+router.post(
+  "/add-firm",
+  verifyToken,
+  upload.single("image"),
+  firmController.addFirm
+);
+
 
 router.get('/uploads/:imageName', (req, res) => {
     const imageName = req.params.imageName;

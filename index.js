@@ -31,6 +31,6 @@ app.listen(PORT, () => {
     console.log(`server started and running at http://localhost:${PORT}`);
 });
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send("Welcome to FUDU");
 })

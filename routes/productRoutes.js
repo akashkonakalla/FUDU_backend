@@ -2,8 +2,14 @@ const express = require('express');
 const productController = require("../controllers/productController");
 
 const router = express.Router();
+const {upload} = require("../config/cloudinary");
 
-router.post('/add-product/:firmId', productController.addProduct);
+router.post("/add-product/:firmId",
+  upload.single("image"),
+  productController.addProduct
+);
+
+
 router.get('/:firmId/products', productController.getProductByFirm);
 
 router.get('/uploads/:imageName', (req, res) => {
