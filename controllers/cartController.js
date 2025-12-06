@@ -51,3 +51,36 @@ const getCart = async (req, res) => {
   }
 };
 
+const updateQuantity = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { productId, quantity } = req.body;
+
+    let cart = await Cart.findOne({ user: userId });
+    if (!cart) return res.status(404).json({ error: "Cart not found" });
+
+    const item = cart.items.find(
+      (i) => i.product.toString() === productId
+    );
+
+    if (!item) return res.status(404).json({ error: "Item not in cart" });
+
+    if (quantity <= 0) {
+      cart.items = cart.items.filter(
+        (i) => i.product.toString() !== productId
+      );
+    } else {
+      item.quantity = quantity;
+    }
+
+    await cart.save();
+    res.status(200).json({ message: "Quantity updated", cart });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+
