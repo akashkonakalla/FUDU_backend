@@ -11,14 +11,14 @@ const addToCart = async (req, res) => {
         if(!product){
             return res.status(404).json({error:"Product no found"})
         }
-        let cart = await Cart.findOne({user: userID});
+        let cart = await Cart.findOne({user: userId});
         if(!cart){
             cart = new Cart({
                 user: userId,
                 items:[{product: productId, quantity:1}]
             });
             await cart.save();
-            return res.status(201).json({message:"Product added to cart"}, {cart});
+            return res.status(201).json({message:"Product added to cart", cart});
         }
         const existingItem = cart.items.find((item) => item.product.toString() === productId);
        if (existingItem) {
