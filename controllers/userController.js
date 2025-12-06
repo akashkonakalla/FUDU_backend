@@ -49,6 +49,38 @@ const userLogin = async(req,res)=>{
     }
 };
 
-module.exports = {userRegister,userLogin};
+const getUserProfile = async(req,res)=>{
+    try{
+        const user= await User.findById(req.userId).select('-password');
+        if(!user){
+            return res.status(404).json({error: "User not found"});
+        }
+        res.status(200).json({profile: user});
+        // console.log({user})
+    }
+    catch(error){
+        console.error(error);
+        res.status(500).json({error: "Internal server error"});
+    }
+}
+
+
+const updateUserProfile = async(req,res)=>{
+    try {
+        const {name, phone, address }=req.body;
+        const updatedUser = await User.findByIdAndUpdate(
+            req.userId,
+            {name,phone,address},
+            {new: true}
+        ).select('-password');
+        res.status(200).json({message:"Profile updated successfully", profile: updatedUser});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error:"Internal server error"})
+    }
+};
+
+
+module.exports = {userRegister,userLogin, getUserProfile, updateUserProfile};
 
     
