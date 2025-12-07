@@ -8,5 +8,4 @@ router.post('/login',userLogin);
 router.get('/profile', userAuth, getUserProfile);
 router.put('/profile', userAuth, updateUserProfile);
 
-
 module.exports= router;
